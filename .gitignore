@@ -1,0 +1,6 @@
+.*
+!/.prettierrc
+!/.eslintrc.json
+!/.gitignore
+node_modules/
+build/
