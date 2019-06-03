@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import logo from './logo.svg';
 import styles from './App.module.css';
 import QuickSort, { swap } from './QuickSort';
+import classNames from 'classnames';
 
 const quickSort = new QuickSort();
 
@@ -13,58 +13,32 @@ console.log(actions);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'quickSort':
+    case 'set':
       return {
         ...state,
-        start: action.data.start,
-        end: action.data.start,
-        message: action.message
-      };
-    case 'info':
-      return {
-        ...state,
-        message: action.message
-      };
-    case 'partition':
-      return {
-        ...state,
-        i: action.data.i,
-        j: action.data.j,
-        pivot: action.data.pivot,
-        start: action.data.start,
-        end: action.data.end,
-        message: action.message
+        ...action.data
       };
     case 'swap':
       const arrayWithSwap = [...state.array];
-      swap(arrayWithSwap, action.data.i, action.data.j);
+      swap(arrayWithSwap, action.swapData.i, action.swapData.j);
       return {
         ...state,
-        array: arrayWithSwap,
-        message: action.message
+        ...action.data,
+        array: arrayWithSwap
       };
-    case 'incrementI':
-      return {
-        ...state,
-        i: state.i + 1
-      };
-    case 'incrementJ':
-      return {
-        ...state,
-        j: state.j + 1
-      };
+    default:
+      return state;
   }
 };
 
 function App() {
   const [currentActionIndex, setCurrentActionIndex] = useState(0);
-  const [currentAction, setCurrentAction] = useState({});
   const [state, dispatch] = useReducer(reducer, { array });
 
   useEffect(() => {
-    setCurrentAction(actions[currentActionIndex]);
     dispatch(actions[currentActionIndex]);
   }, [currentActionIndex]);
+
   const previous = () => {
     setCurrentActionIndex(currentActionIndex - 1);
   };
@@ -74,16 +48,48 @@ function App() {
   };
 
   return (
-    <>
+    <div className={styles.root}>
+      <div className={styles.row}>{state.message}</div>
       <div className={styles.row}>
         {state.array.map((number, i) => (
-          <div className={styles.box} key={i}>
+          <div
+            className={classNames(
+              [styles.box],
+              {
+                [styles.start]: i === state.start
+              },
+              {
+                [styles.end]: i === state.end
+              },
+              {
+                [styles.partition]: i === state.pivotIndex
+              },
+              {
+                [styles.smaller]: i >= state.start && i < state.i
+              }
+            )}
+            key={i}
+          >
             {number}
+            <div className={styles.index}>{i}</div>
           </div>
         ))}
       </div>
       <div className={styles.row}>
-        {currentActionIndex + 1} of {actions.length}
+        {state.array.map((number, i) => (
+          <div className={styles.boxEmpty} key={i}>
+            {i === state.pivotIndex && 'p'}
+            {i === state.i && 'i'}
+            {i === state.j && 'j'}
+          </div>
+        ))}
+        <div className={styles.boxEmpty} style={{ marginLeft: -20 }}>
+          {state.i === array.length && 'i'}
+          {state.j === array.length && 'j'}
+        </div>
+      </div>
+      <div className={styles.row}>
+        Step {currentActionIndex + 1} of {actions.length}
       </div>
       <div className={styles.row}>
         <button onClick={previous} className={styles.button} disabled={currentActionIndex === 0}>
@@ -97,8 +103,7 @@ function App() {
           Next
         </button>
       </div>
-      <div className={styles.row}>{currentAction.message}</div>
-    </>
+    </div>
   );
 }
 

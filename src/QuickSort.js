@@ -10,57 +10,76 @@ class QuickSort {
     let i = start + 1;
     const pivot = arr[start];
     this.history.push({
-      type: 'partition',
+      type: 'set',
       data: {
-        i,
-        j: i,
-        pivot,
+        i: start + 1,
+        j: start + 1,
+        pivotIndex: start,
         start,
-        end
-      },
-      message: 'Call partion'
+        end,
+        message: `Call partition and select ${arr[start]} as the pivot`
+      }
     });
     for (let j = start + 1; j <= end; j++) {
       if (arr[j] < pivot) {
         this.history.push({
-          type: 'info',
-          message: 'The jth position is less than the pivot'
+          type: 'set',
+          data: {
+            message: `The jth position is less than the pivot (${arr[j]} < ${pivot})`,
+            i,
+            j
+          }
         });
         if (i !== j) {
           swap(arr, i, j);
           this.history.push({
             data: {
+              pivotIndex: start,
+              message: 'Swap i and j',
               i,
               j
             },
-            type: 'swap',
-            message: 'Swap i and j'
+            swapData: {
+              i,
+              j
+            },
+            type: 'swap'
           });
         }
-        i++;
         this.history.push({
-          type: 'incrementI',
-          message: 'Increment i'
+          type: 'set',
+          data: { i: i + 1, j: j + 1, message: 'Increment i and j', pivotIndex: start }
         });
+        i++;
       } else {
         this.history.push({
-          message: 'The jth position is greater than or equal to the pivot',
-          type: 'info'
+          data: {
+            message: 'The jth position is greater than or equal to the pivot',
+            i,
+            j
+          },
+          type: 'set'
+        });
+        this.history.push({
+          type: 'set',
+          data: { i, j: j + 1, message: 'Increment j', pivotIndex: start }
         });
       }
-      this.history.push({
-        type: 'incrementJ',
-        message: 'Increment j'
-      });
     }
     swap(arr, start, i - 1);
     this.history.push({
       data: {
+        i: null,
+        j: null,
+        pivotIndex: i - 1,
+        message:
+          'Place the pivot (everything to the left is smaller, everything to the right is bigger)'
+      },
+      swapData: {
         i: start,
         j: i - 1
       },
-      type: 'swap',
-      message: 'Place the pivot'
+      type: 'swap'
     });
     return i - 1;
   };
@@ -69,15 +88,20 @@ class QuickSort {
     this.history.push({
       data: {
         start,
-        end
+        end,
+        message: `Call Quick Sort with a start of ${start} and an end of ${end}`,
+        i: null,
+        j: null,
+        pivotIndex: null
       },
-      type: 'quickSort',
-      message: 'Call Quick Sort'
+      type: 'set'
     });
     if (start >= end) {
       this.history.push({
-        type: 'info',
-        message: 'Return because start is greater than or equal to end (base case)'
+        type: 'set',
+        data: {
+          message: 'Return because the elements are sorted (base case)'
+        }
       });
       return;
     }
