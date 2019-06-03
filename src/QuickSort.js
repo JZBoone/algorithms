@@ -35,9 +35,9 @@ class QuickSort {
           this.history.push({
             data: {
               pivotIndex: start,
-              message: 'Swap i and j',
-              i,
-              j
+              message: 'Swap i and j, and increment i and j',
+              i: i + 1,
+              j: j + 1
             },
             swapData: {
               i,
@@ -45,11 +45,12 @@ class QuickSort {
             },
             type: 'swap'
           });
+        } else {
+          this.history.push({
+            type: 'set',
+            data: { i: i + 1, j: j + 1, message: 'Increment i and j', pivotIndex: start }
+          });
         }
-        this.history.push({
-          type: 'set',
-          data: { i: i + 1, j: j + 1, message: 'Increment i and j', pivotIndex: start }
-        });
         i++;
       } else {
         this.history.push({

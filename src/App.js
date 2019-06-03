@@ -5,8 +5,8 @@ import classNames from 'classnames';
 
 const quickSort = new QuickSort();
 
-// const array = [5, 3, 9, 7, 1, 4, 8, 6, 2];
-const array = [5, 3, 9, 7];
+const array = [5, 3, 9, 7, 1, 4, 8, 6, 2];
+// const array = [5, 3, 9, 7];
 
 const actions = quickSort.getActions(array);
 console.log(actions);
@@ -66,6 +66,9 @@ function App() {
               },
               {
                 [styles.smaller]: i >= state.start && i < state.i
+              },
+              {
+                [styles.larger]: i >= state.i && i < state.j
               }
             )}
             key={i}
