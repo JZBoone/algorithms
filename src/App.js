@@ -60,7 +60,7 @@ function App() {
           </div>
         ))}
       </div>
-      <div className={styles.row} style={{ marginBottom: 20 }}>
+      <div className={styles.row} style={{ marginBottom: 20, marginLeft: -40 }}>
         {state.arr.map((number, i) => (
           <div className={styles.boxEmpty} key={i}>
             {i === state.pivotIndex && 'p'}
@@ -68,7 +68,7 @@ function App() {
             {i === state.j && 'j'}
           </div>
         ))}
-        <div className={styles.boxEmpty} style={{ marginLeft: -40 }}>
+        <div className={styles.boxEmpty}>
           {state.i === state.arr.length && 'i'}
           {state.j === state.arr.length && 'j'}
         </div>
