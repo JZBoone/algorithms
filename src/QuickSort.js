@@ -105,7 +105,7 @@ class QuickSort {
             i: i + 1,
             j: j + 1,
             message:
-              'When the compared element is less than pivot element, move both pointers forward.',
+              'When the compared element is less than the pivot element, move both pointers forward.',
             pivotIndex: start
           });
         }
