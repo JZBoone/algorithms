@@ -9,13 +9,13 @@
 }
 .box,
 .boxEmpty {
-  width: 40px;
+  width: 80px;
 }
 
 .box {
   text-align: center;
   border: 1px solid #ccc;
-  height: 40px;
+  height: 80px;
   position: relative;
 }
 
@@ -23,7 +23,7 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  font-size: 10px;
+  font-size: 16px;
   color: #888;
 }
 
