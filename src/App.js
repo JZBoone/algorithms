@@ -22,9 +22,15 @@ function App() {
     switch (e.which) {
       case 37:
         // left arrow
+        if (disablePrevious()) {
+          return;
+        }
         return previous();
       case 39:
         // right arrow
+        if (disableNext()) {
+          return;
+        }
         return next();
       case 8:
         // backspace
@@ -49,6 +55,14 @@ function App() {
 
   const startOver = () => {
     setCurrentStateIndex(0);
+  };
+
+  const disablePrevious = () => {
+    return currentStateIndex === 0;
+  };
+
+  const disableNext = () => {
+    return currentStateIndex >= states.length - 1;
   };
 
   return (
@@ -102,14 +116,10 @@ function App() {
         Step {currentStateIndex + 1} of {states.length}
       </div>
       <div className={styles.row}>
-        <button onClick={previous} className={styles.button} disabled={currentStateIndex === 0}>
+        <button onClick={previous} className={styles.button} disabled={disablePrevious()}>
           Previous
         </button>
-        <button
-          onClick={next}
-          className={styles.button}
-          disabled={currentStateIndex >= states.length - 1}
-        >
+        <button onClick={next} className={styles.button} disabled={disableNext()}>
           Next
         </button>
         <button onClick={startOver} className={styles.button}>
