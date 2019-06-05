@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import QuickSort, { swap } from './QuickSort';
 import classNames from 'classnames';
@@ -8,50 +8,29 @@ const quickSort = new QuickSort();
 const array = [5, 3, 9, 7, 1, 4, 8, 6, 2];
 // const array = [5, 3, 9, 7];
 
-const actions = quickSort.getActions(array);
-console.log(actions);
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'set':
-      return {
-        ...state,
-        ...action.data
-      };
-    case 'swap':
-      const arrayWithSwap = [...state.array];
-      swap(arrayWithSwap, action.swapData.i, action.swapData.j);
-      return {
-        ...state,
-        ...action.data,
-        array: arrayWithSwap
-      };
-    default:
-      return state;
-  }
-};
+const states = quickSort.getStates(array);
 
 function App() {
-  const [currentActionIndex, setCurrentActionIndex] = useState(0);
-  const [state, dispatch] = useReducer(reducer, { array });
+  const [currentStateIndex, setCurrentStateIndex] = useState(0);
+  const [state, setState] = useState(states[0]);
 
   useEffect(() => {
-    dispatch(actions[currentActionIndex]);
-  }, [currentActionIndex]);
+    setState(states[currentStateIndex]);
+  }, [currentStateIndex]);
 
   const previous = () => {
-    setCurrentActionIndex(currentActionIndex - 1);
+    setCurrentStateIndex(currentStateIndex - 1);
   };
 
   const next = () => {
-    setCurrentActionIndex(currentActionIndex + 1);
+    setCurrentStateIndex(currentStateIndex + 1);
   };
 
   return (
     <div className={styles.root}>
       <div className={styles.row}>{state.message}</div>
       <div className={styles.row}>
-        {state.array.map((number, i) => (
+        {state.arr.map((number, i) => (
           <div
             className={classNames(
               [styles.box],
@@ -79,7 +58,7 @@ function App() {
         ))}
       </div>
       <div className={styles.row}>
-        {state.array.map((number, i) => (
+        {state.arr.map((number, i) => (
           <div className={styles.boxEmpty} key={i}>
             {i === state.pivotIndex && 'p'}
             {i === state.i && 'i'}
@@ -87,21 +66,21 @@ function App() {
           </div>
         ))}
         <div className={styles.boxEmpty} style={{ marginLeft: -20 }}>
-          {state.i === array.length && 'i'}
-          {state.j === array.length && 'j'}
+          {state.i === state.arr.length && 'i'}
+          {state.j === state.arr.length && 'j'}
         </div>
       </div>
       <div className={styles.row}>
-        Step {currentActionIndex + 1} of {actions.length}
+        Step {currentStateIndex + 1} of {states.length}
       </div>
       <div className={styles.row}>
-        <button onClick={previous} className={styles.button} disabled={currentActionIndex === 0}>
+        <button onClick={previous} className={styles.button} disabled={currentStateIndex === 0}>
           Previous
         </button>
         <button
           onClick={next}
           className={styles.button}
-          disabled={currentActionIndex >= actions.length - 1}
+          disabled={currentStateIndex >= states.length - 1}
         >
           Next
         </button>
