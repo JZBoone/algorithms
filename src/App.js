@@ -19,12 +19,16 @@ function App() {
   }, [currentStateIndex]);
 
   const onKeyPress = e => {
-    if (e.which === 37) {
-      // left arrow
-      previous();
-    } else if (e.which === 39) {
-      // right arrow
-      next();
+    switch (e.which) {
+      case 37:
+        // left arrow
+        return previous();
+      case 39:
+        // right arrow
+        return next();
+      case 8:
+        // backspace
+        return startOver();
     }
   };
 
@@ -41,6 +45,10 @@ function App() {
 
   const next = () => {
     setCurrentStateIndex(currentStateIndex + 1);
+  };
+
+  const startOver = () => {
+    setCurrentStateIndex(0);
   };
 
   return (
@@ -103,6 +111,9 @@ function App() {
           disabled={currentStateIndex >= states.length - 1}
         >
           Next
+        </button>
+        <button onClick={startOver} className={styles.button}>
+          Start Over
         </button>
       </div>
     </div>
