@@ -2,6 +2,10 @@
   padding: 20px;
 }
 
+.number {
+  font-size: 48px;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -14,7 +18,7 @@
 
 .box {
   text-align: center;
-  border: 1px solid #ccc;
+  border: 2px solid #eeeeee;
   height: 80px;
   position: relative;
 }
@@ -28,9 +32,10 @@
 }
 
 .boxEmpty {
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: 2px solid rgba(255, 255, 255, 0);
   height: 5px;
+  display: flex;
+  flex-direction: row;
 }
 
 .start {
@@ -62,6 +67,10 @@
   background-color: #ffb6c0;
 }
 
-.shiftLeft {
+.left {
   float: left;
+}
+
+.highlighted {
+  color: #c62641;
 }
