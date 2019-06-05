@@ -71,6 +71,7 @@ class QuickSort {
     swap(arr, start, i - 1);
     this.states.push({
       ...this.lastState(),
+      arr: [...arr],
       message:
         'Place the pivot (everything to the left is smaller, everything to the right is bigger)',
       pivotIndex: i - 1
