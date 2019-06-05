@@ -6,9 +6,8 @@ export const swap = (arr, i, j) => {
 
 class QuickSort {
   states = [];
-  partition = (arr, start, end) => {
-    let i = start + 1;
-    const pivot = arr[start];
+
+  selectPivot = (arr, start, end) => {
     this.states.push({
       ...this.lastState(),
       i: start + 1,
@@ -24,6 +23,13 @@ class QuickSort {
       pivotIndex: start,
       arr: [...arr]
     });
+    return arr[start];
+  };
+
+  partition = (arr, start, end) => {
+    let i = start + 1;
+    const pivot = this.selectPivot(arr, start, end);
+
     for (let j = start + 1; j <= end; j++) {
       if (arr[j] < pivot) {
         this.states.push({
