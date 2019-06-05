@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const swap = (arr, i, j) => {
   const temp = arr[i];
   arr[i] = arr[j];
@@ -15,15 +17,65 @@ class QuickSort {
       pivotIndex: start,
       start,
       end,
-      message: `Call partition and select ${arr[start]} as the pivot`
-    });
-    this.states.push({
-      ...this.lastState(),
-      message: `Call partition and select ${arr[start]} as the pivot`,
-      pivotIndex: start,
+      message: this.partitionMessage(start, end),
       arr: [...arr]
     });
+    this.partitionCallCounter++;
     return arr[start];
+  };
+
+  partitionCallCounter = 0;
+
+  compareMessagesCallCounter = 0;
+
+  compareMessage = (arr, pivot, j) => {
+    const messages = [
+      <span>
+        Partition compares the pivot element with the other elements in the array. If the pivot
+        element ({pivot}) is smaller than the compared element ({arr[1]}), then we know that
+        ultimately the compared element will fall to the left of the pivot. Likewise, if the
+        compared element is larger than then pivot element, then it will fall to the right. We
+        maintain 2 pointers, called i and j, that can be thought of as boundaries. To the left of i,
+        all elements are smaller than the pivot. To the right of i, and until j, all elements are
+        larger than the pivot element.
+      </span>,
+      <span>
+        The compared element ({arr[j]}) is less than the pivot ({pivot}).
+      </span>
+    ];
+    return this.compareMessagesCallCounter === 0 ? messages[0] : messages[1];
+  };
+
+  partitionMessage = (start, end) => {
+    const messages = [
+      <>
+        <span>
+          The partition method is where the magic happens. Partition's first task is to select a
+          "pivot" element. In this version of the algorithm we simply select the first element of
+          the array as the pivot. Other methods of selecting the pivot (e.g., random selection)
+          boost performance. Like qSort, partition takes the array, start, and end indices as
+          parameters.
+        </span>
+        <div />
+        <span>
+          <span>Call partion again</span>
+          <div />
+          <pre>
+            partition({start}, {end})
+          </pre>
+          <br />
+        </span>
+      </>,
+      <span>
+        <span>Call partition again</span>
+        <div />
+        <pre>
+          partition(arr, {start}, {end})
+        </pre>
+        <br />
+      </span>
+    ];
+    return this.partitionCallCounter === 0 ? messages[0] : messages[1];
   };
 
   partition = (arr, start, end) => {
@@ -34,16 +86,17 @@ class QuickSort {
       if (arr[j] < pivot) {
         this.states.push({
           ...this.lastState(),
-          message: `The jth position is less than the pivot (${arr[j]} < ${pivot})`,
+          message: this.compareMessage(arr, pivot, j),
           i,
           j
         });
+        this.compareMessagesCallCounter++;
         if (i !== j) {
           swap(arr, i, j);
           this.states.push({
             ...this.lastState(),
             pivotIndex: start,
-            message: 'Swap i and j, and increment i and j',
+            message: 'Move the compared element before the i pointer.',
             i: i + 1,
             j: j + 1,
             arr: [...arr]
@@ -53,7 +106,8 @@ class QuickSort {
             ...this.lastState(),
             i: i + 1,
             j: j + 1,
-            message: 'Increment i and j',
+            message:
+              'When the compared element is less than pivot element, move both pointers forward.',
             pivotIndex: start
           });
         }
@@ -61,7 +115,7 @@ class QuickSort {
       } else {
         this.states.push({
           ...this.lastState(),
-          message: 'The jth position is greater than or equal to the pivot',
+          message: 'The compared element is greater than or equal to the pivot element.',
           i,
           j
         });
@@ -69,7 +123,7 @@ class QuickSort {
           ...this.lastState(),
           i,
           j: j + 1,
-          message: 'Increment j',
+          message: 'Move the j pointer ahead.',
           pivotIndex: start
         });
       }
@@ -79,7 +133,7 @@ class QuickSort {
       ...this.lastState(),
       arr: [...arr],
       message:
-        'Place the pivot (everything to the left is smaller, everything to the right is bigger)',
+        'Place the pivot. Everything to the left is smaller, and everything to the right is bigger.',
       pivotIndex: i - 1
     });
     return i - 1;
@@ -89,16 +143,52 @@ class QuickSort {
     return this.states[this.states.length - 1];
   };
 
+  qSortCallCounter = 0;
+
+  qSortMessage = (start, end) => {
+    const messages = [
+      <>
+        <span>
+          The algorithm kicks off with a call to qSort, our primary method that takes an array of
+          numbers, a start index, and an end index as its parameters. This first call passes 0 as
+          the start index and {end} as the end index (i.e., the entire array). Quick Sort is a
+          divide and conquer algorithm that splits the problem into smaller and smaller pieces until
+          all of the work is done.
+        </span>
+        <div />
+        <span>
+          <pre>
+            qSort(arr, {start}, {end})
+          </pre>
+          <br />
+        </span>
+        <div>
+          <em>Tip: use the left and right keys instead of the previous and next buttons.</em>
+        </div>
+      </>,
+      <span>
+        <span>Call qSort again</span>
+        <div />
+        <pre>
+          qSort(arr, {start}, {end})
+        </pre>
+        <br />
+      </span>
+    ];
+    return this.qSortCallCounter === 0 ? messages[0] : messages[1];
+  };
+
   qSort = (arr, start, end) => {
     this.states.push({
       arr: [...arr],
       start,
       end,
-      message: `Call Quick Sort with start index ${start} and end index ${end}`,
+      message: this.qSortMessage(start, end),
       i: null,
       j: null,
       pivotIndex: null
     });
+    this.qSortCallCounter++;
     if (start >= end) {
       this.states.push({
         ...this.lastState(),
@@ -113,6 +203,9 @@ class QuickSort {
 
   getStates = arr => {
     this.states = [];
+    this.qSortCallCounter = 0;
+    this.partitionCallCounter = 0;
+    this.compareMessagesCallCounter = 0;
     this.qSort(arr, 0, arr.length - 1);
     return this.states;
   };

@@ -11,6 +11,12 @@
   flex-direction: row;
   padding-bottom: 20px;
 }
+
+.column {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
 .box,
 .boxEmpty {
   width: 80px;

@@ -67,7 +67,21 @@ function App() {
 
   return (
     <div className={styles.root}>
-      <div className={styles.row}>{state.message}</div>
+      <h2>Quick Sort Algorithm</h2>
+      <div className={styles.row}>
+        <button onClick={previous} className={styles.button} disabled={disablePrevious()}>
+          Previous
+        </button>
+        <button onClick={next} className={styles.button} disabled={disableNext()}>
+          Next
+        </button>
+        <button onClick={startOver} className={styles.button}>
+          Start Over
+        </button>
+      </div>
+      <div className={styles.row}>
+        Step {currentStateIndex + 1} of {states.length}
+      </div>
       <div className={styles.row} style={{ paddingBottom: 0 }}>
         {state.arr.map((number, i) => (
           <div
@@ -105,7 +119,7 @@ function App() {
           </div>
         ))}
       </div>
-      <div className={styles.row} style={{ marginBottom: 20 }}>
+      <div className={styles.row}>
         {state.arr.map((number, i) => (
           <div className={styles.boxEmpty} key={i}>
             {i === state.pivotIndex && 'p'}
@@ -120,20 +134,7 @@ function App() {
         </div>
       </div>
       <div className={styles.row} />
-      <div className={styles.row}>
-        Step {currentStateIndex + 1} of {states.length}
-      </div>
-      <div className={styles.row}>
-        <button onClick={previous} className={styles.button} disabled={disablePrevious()}>
-          Previous
-        </button>
-        <button onClick={next} className={styles.button} disabled={disableNext()}>
-          Next
-        </button>
-        <button onClick={startOver} className={styles.button}>
-          Start Over
-        </button>
-      </div>
+      <div className={styles.column}>{state.message}</div>
     </div>
   );
 }
