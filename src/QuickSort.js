@@ -58,8 +58,6 @@ class QuickSort {
         </span>
         <div />
         <span>
-          <span>Call partion again</span>
-          <div />
           <pre>
             partition({start}, {end})
           </pre>
