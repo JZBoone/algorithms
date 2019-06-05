@@ -35,6 +35,8 @@ function App() {
       case 8:
         // backspace
         return startOver();
+      default:
+        return;
     }
   };
 
