@@ -41,6 +41,9 @@ function App() {
                 [styles.end]: i === state.end
               },
               {
+                [styles.inside]: i >= state.start && i <= state.end
+              },
+              {
                 [styles.partition]: i === state.pivotIndex
               },
               {

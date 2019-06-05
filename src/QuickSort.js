@@ -88,7 +88,7 @@ class QuickSort {
       arr: [...arr],
       start,
       end,
-      message: `Call Quick Sort with a start of ${start} and an end of ${end}`,
+      message: `Call Quick Sort with start index ${start} and end index ${end}`,
       i: null,
       j: null,
       pivotIndex: null
