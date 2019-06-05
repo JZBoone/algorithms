@@ -94,16 +94,23 @@ function App() {
             )}
             key={i}
           >
-            {number}
+            <span
+              className={classNames(styles.number, {
+                [styles.highlighted]: state.pivotIndex === i || state.j === i
+              })}
+            >
+              {number}
+            </span>
             <div className={styles.index}>{i}</div>
           </div>
         ))}
       </div>
-      <div className={classNames(styles.row, styles.shiftLeft)} style={{ marginBottom: 20 }}>
+      <div className={styles.row} style={{ marginBottom: 20 }}>
         {state.arr.map((number, i) => (
           <div className={styles.boxEmpty} key={i}>
             {i === state.pivotIndex && 'p'}
-            {i === state.i && <span className={styles.shiftLeft}>i</span>}
+            {i === state.i && 'i'}
+            <div className="ps-flex" />
             {i === state.j && 'j'}
           </div>
         ))}
