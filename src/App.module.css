@@ -61,3 +61,7 @@
 .larger {
   background-color: #ffb6c0;
 }
+
+.shiftLeft {
+  float: left;
+}

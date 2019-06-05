@@ -99,11 +99,11 @@ function App() {
           </div>
         ))}
       </div>
-      <div className={styles.row} style={{ marginBottom: 20, marginLeft: -40 }}>
+      <div className={classNames(styles.row, styles.shiftLeft)} style={{ marginBottom: 20 }}>
         {state.arr.map((number, i) => (
           <div className={styles.boxEmpty} key={i}>
             {i === state.pivotIndex && 'p'}
-            {i === state.i && 'i'}
+            {i === state.i && <span className={styles.shiftLeft}>i</span>}
             {i === state.j && 'j'}
           </div>
         ))}
@@ -112,6 +112,7 @@ function App() {
           {state.j === state.arr.length && 'j'}
         </div>
       </div>
+      <div className={styles.row} />
       <div className={styles.row}>
         Step {currentStateIndex + 1} of {states.length}
       </div>
