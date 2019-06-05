@@ -190,7 +190,7 @@ class QuickSort {
     if (start >= end) {
       this.states.push({
         ...this.lastState(),
-        message: 'Return because the elements are sorted (base case)'
+        message: 'Return because the elements are sorted (this is the base case).'
       });
       return;
     }
