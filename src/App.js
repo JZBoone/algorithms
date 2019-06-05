@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './App.module.css';
-import QuickSort, { swap } from './QuickSort';
+import QuickSort from './QuickSort';
 import classNames from 'classnames';
 
 const quickSort = new QuickSort();
