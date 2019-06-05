@@ -18,6 +18,23 @@ function App() {
     setState(states[currentStateIndex]);
   }, [currentStateIndex]);
 
+  const onKeyPress = e => {
+    if (e.which === 37) {
+      // left arrow
+      previous();
+    } else if (e.which === 39) {
+      // right arrow
+      next();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyPress);
+    return () => {
+      document.removeEventListener('keydown', onKeyPress);
+    };
+  });
+
   const previous = () => {
     setCurrentStateIndex(currentStateIndex - 1);
   };
