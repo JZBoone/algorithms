@@ -20,13 +20,13 @@ class QuickSort {
       message: this.partitionMessage(start, end),
       arr: [...arr]
     });
-    this.partitionCallCounter++;
+    this.partitionMessageCounter++;
     return arr[start];
   };
 
-  partitionCallCounter = 0;
+  partitionMessageCounter = 0;
 
-  compareMessagesCallCounter = 0;
+  compareMessageCallCounter = 0;
 
   compareMessage = (arr, pivot, j) => {
     const messages = [
@@ -43,7 +43,9 @@ class QuickSort {
         The compared element ({arr[j]}) is less than the pivot ({pivot}).
       </span>
     ];
-    return this.compareMessagesCallCounter === 0 ? messages[0] : messages[1];
+    const message = this.compareMessageCallCounter === 0 ? messages[0] : messages[1];
+    this.compareMessageCallCounter++;
+    return message;
   };
 
   partitionMessage = (start, end) => {
@@ -73,7 +75,7 @@ class QuickSort {
         <br />
       </span>
     ];
-    return this.partitionCallCounter === 0 ? messages[0] : messages[1];
+    return this.partitionMessageCounter === 0 ? messages[0] : messages[1];
   };
 
   partition = (arr, start, end) => {
@@ -88,7 +90,6 @@ class QuickSort {
           i,
           j
         });
-        this.compareMessagesCallCounter++;
         if (i !== j) {
           swap(arr, i, j);
           this.states.push({
@@ -141,7 +142,7 @@ class QuickSort {
     return this.states[this.states.length - 1];
   };
 
-  qSortCallCounter = 0;
+  qSortMessageCounter = 0;
 
   qSortMessage = (start, end) => {
     const messages = [
@@ -173,7 +174,9 @@ class QuickSort {
         <br />
       </span>
     ];
-    return this.qSortCallCounter === 0 ? messages[0] : messages[1];
+    const message = this.qSortMessageCounter === 0 ? messages[0] : messages[1];
+    this.qSortMessageCounter++;
+    return message;
   };
 
   qSort = (arr, start, end) => {
@@ -186,7 +189,6 @@ class QuickSort {
       j: null,
       pivotIndex: null
     });
-    this.qSortCallCounter++;
     if (start >= end) {
       this.states.push({
         ...this.lastState(),
@@ -201,9 +203,9 @@ class QuickSort {
 
   getStates = arr => {
     this.states = [];
-    this.qSortCallCounter = 0;
-    this.partitionCallCounter = 0;
-    this.compareMessagesCallCounter = 0;
+    this.qSortMessageCounter = 0;
+    this.partitionMessageCounter = 0;
+    this.compareMessageCallCounter = 0;
     this.qSort(arr, 0, arr.length - 1);
     return this.states;
   };
