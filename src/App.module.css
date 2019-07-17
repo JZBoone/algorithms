@@ -3,10 +3,12 @@
 }
 
 .number {
-  font-size: 48px;
+  font-size: 24px;
 }
 
 .row {
+  width: 100%;
+  max-width: 700px;
   display: flex;
   flex-direction: row;
   padding-bottom: 20px;
@@ -33,7 +35,7 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  font-size: 16px;
+  font-size: 14px;
   color: #888;
 }
 
