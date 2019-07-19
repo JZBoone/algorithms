@@ -70,20 +70,6 @@ function App() {
   return (
     <div className={styles.root}>
       <h2>Quick Sort Algorithm</h2>
-      <div className={styles.row}>
-        <button onClick={previous} className={styles.button} disabled={disablePrevious()}>
-          Previous
-        </button>
-        <button onClick={next} className={styles.button} disabled={disableNext()}>
-          Next
-        </button>
-        <button onClick={startOver} className={styles.button}>
-          Start Over
-        </button>
-      </div>
-      <div className={styles.row}>
-        Step {currentStateIndex + 1} of {states.length}
-      </div>
       <div className={styles.row} style={{ paddingBottom: 0 }}>
         {state.arr.map((number, i) => (
           <div
@@ -134,6 +120,20 @@ function App() {
           {state.i === state.arr.length && 'i'}
           {state.j === state.arr.length && 'j'}
         </div>
+      </div>
+      <div className={styles.row}>
+        <button onClick={previous} className={styles.button} disabled={disablePrevious()}>
+          Previous
+        </button>
+        <button onClick={next} className={styles.button} disabled={disableNext()}>
+          Next
+        </button>
+        <button onClick={startOver} className={styles.button}>
+          Start Over
+        </button>
+      </div>
+      <div className={styles.row}>
+        Step {currentStateIndex + 1} of {states.length}
       </div>
       <div className={styles.row} />
       <div className={styles.column}>{state.message}</div>
