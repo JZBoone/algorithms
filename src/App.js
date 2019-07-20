@@ -106,6 +106,7 @@ function App() {
             <div className={styles.index}>{i}</div>
           </div>
         ))}
+        <div className={styles.boxEmpty} />
       </div>
       <div className={styles.row}>
         {state.arr.map((number, i) => (
