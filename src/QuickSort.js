@@ -151,10 +151,10 @@ class QuickSort {
         </span>
         <span>
           The algorithm kicks off with a call to qSort, our primary method that takes an array of
-          numbers, a start index, and an end index as its parameters. This first call passes 0 as
-          the start index and {end} as the end index (i.e., the entire array). Quick Sort is a
-          divide and conquer algorithm that splits the problem into smaller and smaller pieces until
-          all of the work is done. It's time complexity is n*log(n).
+          numbers, a start index, and an end index as its arguments. This first call passes 0 as the
+          start index and {end} as the end index (i.e., the entire array). Quick Sort is a divide
+          and conquer algorithm that splits the problem into smaller and smaller pieces until all of
+          the work is done. It's time complexity is n*log(n).
         </span>
         <div>
           <br />
