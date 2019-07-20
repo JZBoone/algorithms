@@ -34,7 +34,7 @@ class QuickSort {
         Partition compares the pivot element with the other elements in the array. If the pivot
         element ({pivot}) is smaller than the compared element ({arr[1]}), then we know that
         ultimately the compared element will fall to the left of the pivot. Likewise, if the
-        compared element is larger than then pivot element, then it will fall to the right. We
+        compared element is larger than the pivot element, then it will fall to the right. We
         maintain 2 pointers, called i and j, that can be thought of as boundaries. To the left of i,
         all elements are smaller than the pivot. To the right of i, and until j, all elements are
         larger than the pivot element.
@@ -61,7 +61,7 @@ class QuickSort {
           "pivot" element. In this version of the algorithm we simply select the first element of
           the array as the pivot. Other methods of selecting the pivot (e.g., random selection)
           boost performance. Like qSort, partition takes the array, start, and end indices as
-          parameters.
+          arguments.
         </span>
       </>,
       <span>
