@@ -96,9 +96,9 @@ class QuickSort {
           this.states.push({
             ...this.lastState(),
             pivotIndex: start,
-            message: `Swap the compared element (${
-              arr[i]
-            }) with the element before the i pointer (${arr[j]}).`,
+            message: `Swap the compared element (${arr[i]}) with the element at the ith index (${
+              arr[j]
+            }) and increment the i index.`,
             i: i + 1,
             j: j + 1,
             arr: [...arr]
