@@ -52,27 +52,24 @@ class QuickSort {
     const messages = [
       <>
         <span>
+          <pre>
+            partition({start}, {end})
+          </pre>
+        </span>
+        <span>
           The partition method is where the magic happens. Partition's first task is to select a
           "pivot" element. In this version of the algorithm we simply select the first element of
           the array as the pivot. Other methods of selecting the pivot (e.g., random selection)
           boost performance. Like qSort, partition takes the array, start, and end indices as
           parameters.
         </span>
-        <div />
-        <span>
-          <pre>
-            partition({start}, {end})
-          </pre>
-          <br />
-        </span>
       </>,
       <span>
-        <span>Call partition again</span>
-        <div />
         <pre>
           partition(arr, {start}, {end})
         </pre>
-        <br />
+        <span>Call partition again</span>
+        <div />
       </span>
     ];
     return this.partitionMessageCounter === 0 ? messages[0] : messages[1];
@@ -95,7 +92,7 @@ class QuickSort {
           this.states.push({
             ...this.lastState(),
             pivotIndex: start,
-            message: 'Move the compared element before the i pointer.',
+            message: 'Swap the compared element with the element before the i pointer.',
             i: i + 1,
             j: j + 1,
             arr: [...arr]
@@ -148,30 +145,27 @@ class QuickSort {
     const messages = [
       <>
         <span>
+          <pre>
+            qSort(arr, {start}, {end})
+          </pre>
+        </span>
+        <span>
           The algorithm kicks off with a call to qSort, our primary method that takes an array of
           numbers, a start index, and an end index as its parameters. This first call passes 0 as
           the start index and {end} as the end index (i.e., the entire array). Quick Sort is a
           divide and conquer algorithm that splits the problem into smaller and smaller pieces until
-          all of the work is done.
-        </span>
-        <div />
-        <span>
-          <pre>
-            qSort(arr, {start}, {end})
-          </pre>
-          <br />
+          all of the work is done. It's time complexity is n*log(n).
         </span>
         <div>
+          <br />
           <em>Tip: use the left and right keys instead of the previous and next buttons.</em>
         </div>
       </>,
       <span>
-        <span>Call qSort again</span>
-        <div />
         <pre>
           qSort(arr, {start}, {end})
         </pre>
-        <br />
+        <span>Call qSort again</span>
       </span>
     ];
     const message = this.qSortMessageCounter === 0 ? messages[0] : messages[1];
