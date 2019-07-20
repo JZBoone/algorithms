@@ -96,7 +96,9 @@ class QuickSort {
           this.states.push({
             ...this.lastState(),
             pivotIndex: start,
-            message: 'Swap the compared element with the element before the i pointer.',
+            message: `Swap the compared element (${
+              arr[i]
+            }) with the element before the i pointer (${arr[j]}).`,
             i: i + 1,
             j: j + 1,
             arr: [...arr]
@@ -106,8 +108,9 @@ class QuickSort {
             ...this.lastState(),
             i: i + 1,
             j: j + 1,
-            message:
-              'When the compared element is less than the pivot element, move both pointers forward.',
+            message: `When the compared element (${
+              arr[j]
+            }) is less than the pivot element (${pivot}), move both pointers forward.`,
             pivotIndex: start
           });
         }
@@ -115,7 +118,9 @@ class QuickSort {
       } else {
         this.states.push({
           ...this.lastState(),
-          message: 'The compared element is greater than or equal to the pivot element.',
+          message: `The compared element (${
+            arr[j]
+          }) is greater than or equal to the pivot element (${pivot}).`,
           i,
           j
         });
