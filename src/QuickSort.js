@@ -57,11 +57,15 @@ class QuickSort {
           </pre>
         </span>
         <span>
-          The partition method is where the magic happens. Partition's first task is to select a
-          "pivot" element. In this version of the algorithm we simply select the first element of
-          the array as the pivot. Other methods of selecting the pivot (e.g., random selection)
-          boost performance. Like qSort, partition takes the array, start, and end indices as
-          arguments.
+          The partition method is where the magic happens. Like qSort, partition takes the array,
+          start, and end indices as arguments. Partition's first task is to select a "pivot"
+          element. In this version of the algorithm we simply select the first element of the array
+          as the pivot. Other methods of selecting the pivot (e.g., random selection) boost
+          performance. This is because choosing a good pivot (as close to the median as possible)
+          divides the problem up faster. In fact, if we were to choose the worst pivot every time
+          (i.e., the highest or lowest number), then the time complexity would be n<sup>2</sup>.
+          Note that if the array were sorted, then choosing the first element as the pivot would in
+          fact be the worst pivot every time and would significantly slow down the algorithm.
         </span>
       </>,
       <span>
@@ -154,7 +158,7 @@ class QuickSort {
           numbers, a start index, and an end index as its arguments. This first call passes 0 as the
           start index and {end} as the end index (i.e., the entire array). Quick Sort is a divide
           and conquer algorithm that splits the problem into smaller and smaller pieces until all of
-          the work is done. It's time complexity is n*log(n).
+          the work is done. Its time complexity is n*log(n).
         </span>
         <div>
           <br />
