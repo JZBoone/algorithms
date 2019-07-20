@@ -6,17 +6,15 @@ import classNames from 'classnames';
 const quickSort = new QuickSort();
 
 const array = [5, 3, 9, 7, 1, 4, 8, 6, 2];
-// const array = [5, 3, 9, 7];
-
-const states = quickSort.getStates(array);
 
 function App() {
   const [currentStateIndex, setCurrentStateIndex] = useState(0);
+  const [states, setStates] = useState(quickSort.getStates(array));
   const [state, setState] = useState(states[0]);
 
   useEffect(() => {
     setState(states[currentStateIndex]);
-  }, [currentStateIndex]);
+  }, [currentStateIndex, states]);
 
   const onKeyPress = e => {
     switch (e.which) {
@@ -57,6 +55,12 @@ function App() {
 
   const startOver = () => {
     setCurrentStateIndex(0);
+  };
+
+  const shuffle = () => {
+    array.sort(() => Math.random() - 0.5);
+    setStates(quickSort.getStates(array));
+    startOver();
   };
 
   const disablePrevious = () => {
@@ -131,6 +135,9 @@ function App() {
         </button>
         <button onClick={startOver} className={styles.button}>
           Start Over
+        </button>
+        <button onClick={shuffle} className={styles.button}>
+          Shuffle
         </button>
       </div>
       <div className={styles.row}>
