@@ -143,7 +143,6 @@ function App() {
       <div className={styles.row}>
         Step {currentStateIndex + 1} of {states.length}
       </div>
-      <div className={styles.row} />
       <div className={styles.column}>{state.message}</div>
     </div>
   );
