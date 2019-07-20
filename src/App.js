@@ -134,7 +134,7 @@ function App() {
           Next
         </button>
         <button onClick={startOver} className={styles.button}>
-          Start Over
+          Restart
         </button>
         <button onClick={shuffle} className={styles.button}>
           Shuffle
