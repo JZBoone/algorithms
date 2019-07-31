@@ -87,6 +87,7 @@ class QuickSort {
       if (arr[j] < pivot) {
         this.states.push({
           ...this.lastState(),
+          swapped: null,
           message: this.compareMessage(arr, pivot, j),
           i,
           j
@@ -101,11 +102,13 @@ class QuickSort {
             }) and increment the i index.`,
             i: i + 1,
             j: j + 1,
-            arr: [...arr]
+            arr: [...arr],
+            swapped: [arr[i], arr[j]]
           });
         } else {
           this.states.push({
             ...this.lastState(),
+            swapped: null,
             i: i + 1,
             j: j + 1,
             message: `When the compared element (${
@@ -118,6 +121,7 @@ class QuickSort {
       } else {
         this.states.push({
           ...this.lastState(),
+          swapped: null,
           message: `The compared element (${
             arr[j]
           }) is greater than or equal to the pivot element (${pivot}).`,
@@ -126,6 +130,7 @@ class QuickSort {
         });
         this.states.push({
           ...this.lastState(),
+          swapped: null,
           i,
           j: j + 1,
           message: 'Move the j pointer ahead.',
@@ -137,6 +142,7 @@ class QuickSort {
     this.states.push({
       ...this.lastState(),
       arr: [...arr],
+      swapped: [arr[start], arr[i - 1]],
       message:
         'Place the pivot. Everything to the left is smaller, and everything to the right is bigger.',
       pivotIndex: i - 1
@@ -195,6 +201,7 @@ class QuickSort {
     if (start >= end) {
       this.states.push({
         ...this.lastState(),
+        swapped: null,
         message: 'Return because the elements are sorted (this is the base case).'
       });
       return;
