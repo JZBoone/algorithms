@@ -27,11 +27,11 @@ function App() {
       const deltaX = elOneRect.left - elTwoRect.left;
       setAnimation({
         [numOne]: {
-          transform: `translate(${deltaX}px, 0px`,
+          transform: `translate(${deltaX}px, 0px)`,
           transition: '0s'
         },
         [numTwo]: {
-          transform: `translate(${deltaX * -1}px, 0px`,
+          transform: `translate(${deltaX * -1}px, 0px)`,
           transition: '0s'
         }
       });
