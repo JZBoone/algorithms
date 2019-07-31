@@ -57,8 +57,8 @@ class QuickSort {
           </pre>
         </span>
         <span>
-          The partition method is where the magic happens. Like qSort, partition takes the array,
-          start, and end indices as arguments. Partition's first task is to select a "pivot"
+          The partition method is where the magic happens. Like quickSort, partition takes the
+          array, start, and end indices as arguments. Partition's first task is to select a "pivot"
           element. In this version of the algorithm we simply select the first element of the array
           as the pivot. Other methods of selecting the pivot (e.g., random selection) boost
           performance. This is because choosing a good pivot (as close to the median as possible)
@@ -161,15 +161,15 @@ class QuickSort {
       <>
         <span>
           <pre>
-            qSort(arr, {start}, {end})
+            quickSort(arr, {start}, {end})
           </pre>
         </span>
         <span>
-          The algorithm kicks off with a call to qSort, our primary method that takes an array of
-          numbers, a start index, and an end index as its arguments. This first call passes 0 as the
-          start index and {end} as the end index (i.e., the entire array). Quick Sort is a divide
-          and conquer algorithm that splits the problem into smaller and smaller pieces until all of
-          the work is done. Its time complexity is n*log(n).
+          The algorithm kicks off with a call to quickSort, our primary method that takes an array
+          of numbers, a start index, and an end index as its arguments. This first call passes 0 as
+          the start index and {end} as the end index (i.e., the entire array). Quick Sort is a
+          divide and conquer algorithm that splits the problem into smaller and smaller pieces until
+          all of the work is done. Its time complexity is n*log(n).
         </span>
         <div>
           <br />
@@ -178,9 +178,9 @@ class QuickSort {
       </>,
       <span>
         <pre>
-          qSort(arr, {start}, {end})
+          quickSort(arr, {start}, {end})
         </pre>
-        <span>Call qSort again</span>
+        <span>Call quickSort again</span>
       </span>
     ];
     const message = this.qSortMessageCounter === 0 ? messages[0] : messages[1];
