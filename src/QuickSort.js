@@ -9,9 +9,14 @@ export const swap = (arr, i, j) => {
 class QuickSort {
   states = [];
 
-  selectPivot = (arr, start, end) => {
+  partitionMethod = 'firstElement';
+
+  partitionMessageCounter = 0;
+
+  selectFirstElementAsPivot = (arr, start, end) => {
     this.states.push({
       ...this.lastState(),
+      swapped: null,
       i: start + 1,
       j: start + 1,
       pivotIndex: start,
@@ -21,10 +26,46 @@ class QuickSort {
       arr: [...arr]
     });
     this.partitionMessageCounter++;
-    return arr[start];
+    return [arr[start], arr];
   };
 
-  partitionMessageCounter = 0;
+  selectRandomPivot = (arr, start, end) => {
+    const pivotIndex = Math.round(Math.random() * (end - start) + start);
+    this.states.push({
+      ...this.lastState(),
+      swapped: null,
+      i: start + 1,
+      j: start + 1,
+      pivotIndex,
+      start,
+      end,
+      message: this.partitionMessage(start, end, arr[pivotIndex]),
+      arr: [...arr]
+    });
+    this.partitionMessageCounter++;
+    if (pivotIndex !== start) {
+      swap(arr, start, pivotIndex);
+      this.states.push({
+        ...this.lastState(),
+        swapped: [arr[start], arr[pivotIndex]],
+        pivotIndex: start,
+        message: 'The pivot is moved to the start index.',
+        arr: [...arr]
+      });
+    }
+    return [arr[start], arr];
+  };
+
+  selectPivot = (arr, start, end) => {
+    switch (this.partitionMethod) {
+      case 'firstElement':
+        return this.selectFirstElementAsPivot(arr, start, end);
+      case 'randomSelection':
+        return this.selectRandomPivot(arr, start, end);
+      default:
+        throw new Error('Unsupported pivot selection method');
+    }
+  };
 
   compareMessageCallCounter = 0;
 
@@ -48,7 +89,21 @@ class QuickSort {
     return message;
   };
 
-  partitionMessage = (start, end) => {
+  partitionMessage = (start, end, pivot) => {
+    const partionMethodSpecificBlurb =
+      this.partitionMethod === 'firstElement' ? (
+        <span>
+          In this version of the algorithm we simply select the first element of the array as the
+          pivot. Other methods of selecting the pivot (e.g., random selection) boost performance.
+          This is because choosing a good pivot (as close to the median as possible) divides the
+          problem up faster. In fact, if we were to choose the worst pivot every time (i.e., the
+          highest or lowest number), then the time complexity would be n<sup>2</sup>. Note that if
+          the array were sorted, then choosing the first element as the pivot would in fact be the
+          worst pivot every time and would significantly slow down the algorithm.
+        </span>
+      ) : (
+        <span>In this version of the algorithm we randomly select the pivot ({pivot}).</span>
+      );
     const messages = [
       <>
         <span>
@@ -59,13 +114,7 @@ class QuickSort {
         <span>
           The partition method is where the magic happens. Like quickSort, partition takes the
           array, start, and end indices as arguments. Partition's first task is to select a "pivot"
-          element. In this version of the algorithm we simply select the first element of the array
-          as the pivot. Other methods of selecting the pivot (e.g., random selection) boost
-          performance. This is because choosing a good pivot (as close to the median as possible)
-          divides the problem up faster. In fact, if we were to choose the worst pivot every time
-          (i.e., the highest or lowest number), then the time complexity would be n<sup>2</sup>.
-          Note that if the array were sorted, then choosing the first element as the pivot would in
-          fact be the worst pivot every time and would significantly slow down the algorithm.
+          element. {partionMethodSpecificBlurb}
         </span>
       </>,
       <span>
@@ -79,9 +128,9 @@ class QuickSort {
     return this.partitionMessageCounter === 0 ? messages[0] : messages[1];
   };
 
-  partition = (arr, start, end) => {
+  partition = (array, start, end) => {
     let i = start + 1;
-    const pivot = this.selectPivot(arr, start, end);
+    const [pivot, arr] = this.selectPivot(array, start, end);
 
     for (let j = start + 1; j <= end; j++) {
       if (arr[j] < pivot) {
@@ -211,7 +260,8 @@ class QuickSort {
     this.qSort(arr, pivotPosition + 1, end);
   };
 
-  getStates = arr => {
+  getStates = (arr, partitionMethod = 'firstElement') => {
+    this.partitionMethod = partitionMethod;
     this.states = [];
     this.qSortMessageCounter = 0;
     this.partitionMessageCounter = 0;

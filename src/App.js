@@ -9,7 +9,8 @@ const array = [5, 3, 9, 7, 1, 4, 8, 6, 2];
 
 function App() {
   const [currentStateIndex, setCurrentStateIndex] = useState(0);
-  const [states, setStates] = useState(quickSort.getStates(array));
+  const [partitionMethod, setPartionMethod] = useState('firstElement');
+  const [states, setStates] = useState(quickSort.getStates([...array], partitionMethod));
   const [state, setState] = useState(states[0]);
   const [animation, setAnimation] = useState(null);
   const [lastClickDirection, setLastClickDirection] = useState(null);
@@ -109,7 +110,7 @@ function App() {
 
   const shuffle = () => {
     array.sort(() => Math.random() - 0.5);
-    setStates(quickSort.getStates(array));
+    setStates(quickSort.getStates([...array], partitionMethod));
     startOver();
   };
 
@@ -124,6 +125,20 @@ function App() {
   return (
     <div className={styles.root}>
       <h2>Quick Sort Algorithm</h2>
+      <label htmlFor="partitionMethod">Partion Method: </label>
+      <select
+        id="partitionMethod"
+        style={{ marginBottom: 25 }}
+        value={partitionMethod}
+        onChange={e => {
+          setPartionMethod(e.target.value);
+          setStates(quickSort.getStates([...array], e.target.value));
+          startOver();
+        }}
+      >
+        <option value="firstElement">First Element</option>
+        <option value="randomSelection">Random Selection</option>
+      </select>
       <div className={styles.row} style={{ paddingBottom: 0 }}>
         {state.arr.map((number, i) => (
           <div
