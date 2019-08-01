@@ -32,7 +32,7 @@
 
 .box {
   text-align: center;
-  border: 2px solid #eeeeee;
+  border: 1px solid #eeeeee;
   height: 80px;
   position: relative;
 }
@@ -46,23 +46,23 @@
 }
 
 .boxEmpty {
-  border: 2px solid rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0);
   height: 5px;
   display: flex;
   flex-direction: row;
 }
 
 .start {
-  border-left: 2px solid #f9788e;
+  border-left: 1px solid #e8bef5;
 }
 
 .inside {
-  border-bottom: 2px solid #f9788e;
-  border-top: 2px solid #f9788e;
+  border-bottom: 1px solid #e8bef5;
+  border-top: 1px solid #e8bef5;
 }
 
 .end {
-  border-right: 2px solid #f9788e;
+  border-right: 1px solid #e8bef5;
 }
 
 .button {
@@ -70,17 +70,17 @@
 }
 
 .smaller {
-  background-color: #ffeef0;
+  background-color: #f7e9fb;
 }
 
 .partition {
-  background-color: #ffd4da;
+  background-color: #e8bef5;
 }
 
 .larger {
-  background-color: #ffb6c0;
+  background-color: #d692ec;
 }
 
 .highlighted {
-  color: #c62641;
+  color: green;
 }

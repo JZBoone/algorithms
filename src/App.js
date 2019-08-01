@@ -151,9 +151,7 @@ function App() {
             key={i}
           >
             <div
-              className={classNames(styles.number, {
-                [styles.highlighted]: state.pivotIndex === i || state.j === i
-              })}
+              className={styles.number}
               id={`qsNumber${number}`}
               style={getAnimationStyles(number)}
             >
