@@ -9,7 +9,7 @@ const array = [5, 3, 9, 7, 1, 4, 8, 6, 2];
 
 function App() {
   const [currentStateIndex, setCurrentStateIndex] = useState(0);
-  const [partitionMethod, setPartionMethod] = useState('firstElement');
+  const [partitionMethod, setPartitionMethod] = useState('firstElement');
   const [states, setStates] = useState(quickSort.getStates([...array], partitionMethod));
   const [state, setState] = useState(states[0]);
   const [animation, setAnimation] = useState(null);
@@ -125,13 +125,13 @@ function App() {
   return (
     <div className={styles.root}>
       <h2>Quick Sort Algorithm</h2>
-      <label htmlFor="partitionMethod">Partion Method: </label>
+      <label htmlFor="partitionMethod">Partition Method: </label>
       <select
         id="partitionMethod"
         style={{ marginBottom: 25 }}
         value={partitionMethod}
         onChange={e => {
-          setPartionMethod(e.target.value);
+          setPartitionMethod(e.target.value);
           setStates(quickSort.getStates([...array], e.target.value));
           startOver();
         }}

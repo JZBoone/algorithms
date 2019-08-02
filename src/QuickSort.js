@@ -49,7 +49,7 @@ class QuickSort {
         ...this.lastState(),
         swapped: [arr[start], arr[pivotIndex]],
         pivotIndex: start,
-        message: 'The pivot is moved to the start index.',
+        message: 'We move the pivot to the start index.',
         arr: [...arr]
       });
     }
@@ -90,7 +90,7 @@ class QuickSort {
   };
 
   partitionMessage = (start, end, pivot) => {
-    const partionMethodSpecificBlurb =
+    const partitionMethodSpecificBlurb =
       this.partitionMethod === 'firstElement' ? (
         <span>
           In this version of the algorithm we simply select the first element of the array as the
@@ -102,8 +102,12 @@ class QuickSort {
           worst pivot every time and would significantly slow down the algorithm.
         </span>
       ) : (
-        <span>In this version of the algorithm we randomly select the pivot ({pivot}).</span>
+        <span>
+          In this version of the algorithm we randomly select the pivot, which in this case is{' '}
+          {pivot}.
+        </span>
       );
+    const randomSelectionMessage = `. The pivot, ${pivot}, is randomly selected.`;
     const messages = [
       <>
         <span>
@@ -114,14 +118,14 @@ class QuickSort {
         <span>
           The partition method is where the magic happens. Like quickSort, partition takes the
           array, start, and end indices as arguments. Partition's first task is to select a "pivot"
-          element. {partionMethodSpecificBlurb}
+          element. {partitionMethodSpecificBlurb}
         </span>
       </>,
       <span>
         <pre>
           partition(arr, {start}, {end})
         </pre>
-        <span>Call partition again</span>
+        <span>Call partition again{randomSelectionMessage}</span>
         <div />
       </span>
     ];
