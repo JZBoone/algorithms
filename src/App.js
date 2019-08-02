@@ -122,6 +122,11 @@ function App() {
     startOver();
   };
 
+  const sort = () => {
+    setStates(quickSort.getStates([...array].sort(), partitionMethod));
+    startOver();
+  };
+
   const disablePrevious = () => {
     return currentStateIndex === 0;
   };
@@ -201,7 +206,7 @@ function App() {
       </div>
       <div className={styles.row}>
         <button onClick={previous} className={styles.button} disabled={disablePrevious()}>
-          Previous
+          Last
         </button>
         <button onClick={next} className={styles.button} disabled={disableNext()}>
           Next
@@ -211,6 +216,9 @@ function App() {
         </button>
         <button onClick={shuffle} className={styles.button}>
           Shuffle
+        </button>
+        <button onClick={sort} className={styles.button}>
+          Sort
         </button>
       </div>
       <div className={styles.row}>

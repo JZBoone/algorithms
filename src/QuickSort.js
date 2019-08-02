@@ -226,7 +226,7 @@ class QuickSort {
         </span>
         <div>
           <br />
-          <em>Tip: use the left and right keys instead of the previous and next buttons.</em>
+          <em>Tip: use the left and right keys instead of the last and next buttons.</em>
         </div>
       </>,
       <span>
