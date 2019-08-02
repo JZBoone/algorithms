@@ -204,7 +204,7 @@ function App() {
           {state.j === state.arr.length && 'j'}
         </div>
       </div>
-      <div className={styles.row}>
+      <div className={styles.row} style={{ flexWrap: 'wrap' }}>
         <button onClick={previous} className={styles.button} disabled={disablePrevious()}>
           Last
         </button>
