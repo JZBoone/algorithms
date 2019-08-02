@@ -111,7 +111,7 @@ class QuickSort {
     const messages = [
       <>
         <span>
-          <pre>
+          <pre style={{ marginTop: 0 }}>
             partition({start}, {end})
           </pre>
         </span>
@@ -122,7 +122,7 @@ class QuickSort {
         </span>
       </>,
       <span>
-        <pre>
+        <pre style={{ marginTop: 0 }}>
           partition(array, {start}, {end})
         </pre>
         <span>Call partition again{randomSelectionMessage}</span>
@@ -213,7 +213,7 @@ class QuickSort {
     const messages = [
       <>
         <span>
-          <pre>
+          <pre style={{ marginTop: 0 }}>
             quickSort(array, {start}, {end})
           </pre>
         </span>
@@ -230,7 +230,7 @@ class QuickSort {
         </div>
       </>,
       <span>
-        <pre>
+        <pre style={{ marginTop: 0 }}>
           quickSort(array, {start}, {end})
         </pre>
         <span>Call quickSort again</span>
