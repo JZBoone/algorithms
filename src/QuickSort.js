@@ -123,7 +123,7 @@ class QuickSort {
       </>,
       <span>
         <pre>
-          partition(arr, {start}, {end})
+          partition(array, {start}, {end})
         </pre>
         <span>Call partition again{randomSelectionMessage}</span>
         <div />
@@ -214,7 +214,7 @@ class QuickSort {
       <>
         <span>
           <pre>
-            quickSort(arr, {start}, {end})
+            quickSort(array, {start}, {end})
           </pre>
         </span>
         <span>
@@ -231,7 +231,7 @@ class QuickSort {
       </>,
       <span>
         <pre>
-          quickSort(arr, {start}, {end})
+          quickSort(array, {start}, {end})
         </pre>
         <span>Call quickSort again</span>
       </span>
