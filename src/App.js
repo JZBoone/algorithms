@@ -16,10 +16,18 @@ function App() {
   const [lastClickDirection, setLastClickDirection] = useState(null);
 
   useEffect(() => {
-    if (
-      (lastClickDirection === 'next' && states[currentStateIndex].swapped) ||
-      (lastClickDirection === 'previous' && states[currentStateIndex + 1].swapped)
-    ) {
+    const needsAnimation = () => {
+      if (lastClickDirection === 'next' && states[currentStateIndex].swapped) {
+        return true;
+      }
+      if (lastClickDirection === 'previous') {
+        if (currentStateIndex === states.length - 1) {
+          return false;
+        }
+        return states[currentStateIndex + 1].swapped;
+      }
+    };
+    if (needsAnimation()) {
       const swapStateIndex =
         lastClickDirection === 'next' ? currentStateIndex : currentStateIndex + 1;
       const [numOne, numTwo] = states[swapStateIndex].swapped;
